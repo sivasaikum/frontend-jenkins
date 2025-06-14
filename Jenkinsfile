@@ -38,6 +38,19 @@ pipeline {
                 }
             }
         }
+
+        stage('Trigger Deploy') {
+            when {
+                expression {
+                    params.deploy
+                }
+            }
+            steps {
+                script {
+                    build job: 'frontend-ci', parameters: [string(name: 'version', value: "${appVersion}")], propagate: true
+                }
+            }
+        }
     }
     post { 
         always { 
