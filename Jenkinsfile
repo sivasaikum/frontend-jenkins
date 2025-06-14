@@ -47,7 +47,7 @@ pipeline {
             }
             steps {
                 script {
-                    build job: 'frontend-ci', parameters: [string(name: 'version', value: "${appVersion}")], propagate: true
+                    build job: 'frontend-cd', parameters: [string(name: 'version', value: "${appVersion}")], propagate: true
                 }
             }
         }
